@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUMIRA MEDICA</title>
+    <style>
+        @keyframes gradientBackground {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(270deg, #f9b9e5, #36db5f, #f97f79);
+            background-size: 600% 600%;
+            animation: gradientBackground 15s ease infinite;
+        }
+
+        header {
+            background-color: #364c63;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 40px;
+            color: white;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            margin: 20px;
+        }
+
+        .hero img {
+            max-width: 40%;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content {
+            max-width: 50%;
+            padding: 20px;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-family: 'Georgia', serif;
+            text-transform: capitalize;
+            letter-spacing: 1px;
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin: 10px 0;
+            font-family: 'Verdana', sans-serif;
+            line-height: 1.6;
+        }
+
+        .hero-content .cta {
+            background-color: #b6d2d2;
+            color: #264565;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .hero-content .cta:hover {
+            transform: scale(1.1);
+        }
+
+        footer {
+            background-color: #020d18;
+            color: rgb(242, 228, 228);
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer a {
+            color: #ffcc00;
+            text-decoration: none;
+        }
+
+        .products {
+            padding: 40px;
+            text-align: center;
+            background: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .products h2 {
+            font-size: 2.5rem;
+            color: #007bff;
+            margin-bottom: 20px;
+            font-family: 'Courier New', monospace;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .products div {
+            background: rgb(252, 242, 242);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .products div:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .products img {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .products div h3 {
+            font-size: 1.8rem;
+            font-family: 'Tahoma', sans-serif;
+            color: #070d25;
+            text-transform: capitalize;
+            margin-bottom: 10px;
+        }
+
+        .products div p {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .products .cta {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .products .cta:hover {
+            background-color: #0056b3;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .hero-content {
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .hero img {
+            animation: slideIn 1.5s ease-in-out;
+        }
+
+        .products div {
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .cta {
+            transition: transform 0.3s ease;
+        }
+
+        .cta:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <header>LUMIRA MADICA - Your Trusted Health Partner</header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Welcome to LUMIRA MADICA</h1>
+            <p>Your trusted health partner for affordable and reliable medicine delivery.</p>
+            <p>Enjoy exclusive discounts, cashback offers, and free delivery services.</p>
+           
+        </div>
+        <img src="logo.jpg" alt="LUMIRA MADICA Logo">
+    </section>
+
+    <section class="products" style="padding: 40px; text-align: center;">
+        <h2>Available Products</h2>
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+            <div style="text-align: center;">
+                <img src="image/bprex.jpg" alt="Bprex" style="max-width: 200px; border-radius: 10px;">
+                <h3>Bprex</h3>
+                <p>Effective herbal solution for blood pressure management.</p>
+                <button class="cta">Order Now</button>
+            </div>
+            <div style="text-align: center;">
+                <img src="image/gajorex.jpg" alt="Gajorex" style="max-width: 200px; border-radius: 10px;">
+                <h3>Gajorex</h3>
+                <p>Natural remedy for joint pain and arthritis.</p>
+                <button class="cta">Order Now</button>
+            </div>
+            <div style="text-align: center;">
+                <img src="image/igren.jpg" alt="Igren" style="max-width: 200px; border-radius: 10px;">
+                <h3>Igren</h3>
+                <p>Herbal solution for migraine relief.</p>
+                <button class="cta">Order Now</button>
+            </div>
+            <div style="text-align: center;">
+                <img src="image/kingraj.jpg" alt="Kingraj" style="max-width: 200px; border-radius: 10px;">
+                <h3>Kingraj</h3>
+                <p>Boosts energy and vitality naturally.</p>
+                <button class="cta">Order Now</button>
+            </div>
+            <div style="text-align: center;">
+                <img src="image/naipain.jpg" alt="Naipain" style="max-width: 200px; border-radius: 10px;">
+                <h3>Naipain</h3>
+                <p>Relieves pain and inflammation effectively.</p>
+                <button class="cta">Order Now</button>
+            </div>
+            <div style="text-align: center;">
+                <img src="image/peeless.jpg" alt="Peeless" style="max-width: 200px; border-radius: 10px;">
+                <h3>Peeless</h3>
+                <p>Herbal solution for stress and anxiety relief.</p>
+                <button class="cta">Order Now</button>
+            </div>
+            <div style="text-align: center;">
+                <img src="image/pic1.jpg" alt="Pic1" style="max-width: 200px; border-radius: 10px;">
+                <h3>Pic1</h3>
+                <p>Custom herbal product for personalized care.</p>
+                <button class="cta">Order Now</button>
+            </div>
+            <div style="text-align: center;">
+                <img src="image/pic2.jpg" alt="Pic2" style="max-width: 200px; border-radius: 10px;">
+                <h3>Pic2</h3>
+                <p>Another custom herbal product for personalized care.</p>
+                <button class="cta">Order Now</button>
+            </div>
+            <div style="text-align: center;">
+                <img src="image/rexafet.jpg" alt="Rexafet" style="max-width: 200px; border-radius: 10px;">
+                <h3>Rexafet</h3>
+                <p>Herbal remedy for respiratory health.</p>
+                <button class="cta">Order Now</button>
+            </div>
+            <div style="text-align: center;">
+                <img src="image/spermton.jpg" alt="Spermton" style="max-width: 200px; border-radius: 10px;">
+                <h3>Spermton</h3>
+                <p>Natural solution for reproductive health.</p>
+                <button class="cta">Order Now</button>
+            </div>
+            <div style="text-align: center;">
+                <img src="image/unifin.jpg" alt="Unifin" style="max-width: 200px; border-radius: 10px;">
+                <h3>Unifin</h3>
+                <p>Herbal product for overall wellness.</p>
+                <button class="cta">Order Now</button>
+            </div>
+        </div>
+    </section>
+
+    <div id="products"></div>
+
+
+
+
+    <footer>
+        &copy; 2025 MedEasy. All rights reserved. | <a href="#">Privacy Policy</a>
+    </footer>
+
+    <script>
+        const scriptURL = "https://script.google.com/macros/s/AKfycbzcWel2cbFmlV1GVLm8QvAmS7RiWCRcI8DOexHt19gsf7NPwE2lg9GxcBxbTBr-aAm5/exec";
+
+        function openOrderForm(productName) {
+            const formHTML = `
+                <div id="orderModal" style="display: flex; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); justify-content: center; align-items: center; z-index: 999;">
+                    <div style="background: white; width: 90%; max-width: 400px; padding: 20px; border-radius: 10px;">
+                        <h3>Place Your Order</h3>
+                        <form id="orderForm">
+                            <input type="text" name="customerName" placeholder="Your Name" required style="width: 100%; padding: 10px; margin: 8px 0; border-radius: 6px; border: 1px solid #ccc;">
+                            <input type="tel" name="phone" placeholder="Phone Number" required style="width: 100%; padding: 10px; margin: 8px 0; border-radius: 6px; border: 1px solid #ccc;">
+                            <input type="text" name="address" placeholder="Full Address" required style="width: 100%; padding: 10px; margin: 8px 0; border-radius: 6px; border: 1px solid #ccc;">
+                            <input type="text" name="productName" value="${productName}" readonly style="width: 100%; padding: 10px; margin: 8px 0; border-radius: 6px; border: 1px solid #ccc;">
+                            <input type="number" name="quantity" min="1" value="1" required style="width: 100%; padding: 10px; margin: 8px 0; border-radius: 6px; border: 1px solid #ccc;">
+                            
+                            <button type="submit" style="background: #007bff; color: white; width: 100%; padding: 12px; border-radius: 6px; border: none; cursor: pointer; margin-top: 10px;">Submit Order</button>
+                        </form>
+                        <button onclick="closeOrderForm()" style="background: red; color: white; width: 100%; padding: 12px; border-radius: 6px; border: none; cursor: pointer; margin-top: 10px;">Cancel</button>
+                    </div>
+                </div>
+            `;
+            document.body.insertAdjacentHTML('beforeend', formHTML);
+
+            const form = document.getElementById("orderForm");
+            form.addEventListener("submit", e => {
+                e.preventDefault();
+                fetch(scriptURL, {
+                    method: "POST",
+                    body: new FormData(form)
+                })
+                .then(res => {
+                    alert("Order Submitted Successfully!");
+                    closeOrderForm();
+                })
+                .catch(err => alert("Error: " + err.message));
+            });
+        }
+
+        function closeOrderForm() {
+            const modal = document.getElementById("orderModal");
+            if (modal) modal.remove();
+        }
+
+        document.querySelectorAll('.cta').forEach(button => {
+            button.addEventListener('click', () => {
+                const productName = button.previousElementSibling.previousElementSibling.textContent;
+                openOrderForm(productName);
+            });
+        });
+    </script>
+</body>
+</html>

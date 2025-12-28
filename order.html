@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Order Products</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f5f5f5;
+        margin: 0;
+        padding: 0;
+    }
+
+    header {
+        background: #111;
+        color: white;
+        padding: 20px;
+        text-align: center;
+        font-size: 24px;
+        letter-spacing: 1px;
+    }
+
+    .container {
+        width: 90%;
+        margin: auto;
+        padding: 20px 0;
+    }
+
+    .products {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+
+    .product {
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+        padding: 15px;
+        text-align: center;
+    }
+
+    .product img {
+        width: 100%;
+        border-radius: 10px;
+    }
+
+    .order-btn {
+        background: #111;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        width: 100%;
+        margin-top: 10px;
+        cursor: pointer;
+        border-radius: 6px;
+    }
+
+    .order-btn:hover {
+        background: #333;
+    }
+
+    #orderModal {
+        display: none;
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: rgba(0,0,0,0.5);
+        justify-content: center;
+        align-items: center;
+        z-index: 999;
+    }
+
+    .modal-content {
+        background: white;
+        width: 90%;
+        max-width: 400px;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    input, select {
+        width: 100%;
+        padding: 10px;
+        margin: 8px 0;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+    }
+
+    .pay-icons img {
+        width: 60px;
+        margin: 5px;
+    }
+
+    .submit-btn {
+        background: #ff6600;
+        color: white;
+        width: 100%;
+        padding: 12px;
+        border-radius: 6px;
+        border: none;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+</style>
+</head>
+<body>
+
+<header>🛒 Product Store</header>
+
+<div class="container">
+    <h2>Available Products</h2>
+
+    <div class="products">
+        <!-- PRODUCT 1 -->
+        <div class="product">
+            <h3>🌿“প্রাকৃতিক সমাধান — রাসায়নিক নয়, হারবাল চিকিৎসা" 🌿</h3>
+            <p>✅ ডায়াবেটিস নিয়ন্ত্রণে প্রাকৃতিক ইউনানী সমাধান 🌿*</p>
+            <p>ডায়াবেটিস নিয়ন্ত্রণ করতে বারবার ওষুধ বদলাচ্ছেন? এবার চেষ্টা করুন  প্রাকৃতিক ইউনানী হারবাল Diarex ট্যাবলেট —</p>
+            <ul>
+                <li>💚 রক্তে শর্করার মাত্রা নিয়ন্ত্রণে সাহায্য করে</li>
+                <li>💚 ইনসুলিনের কার্যকারিতা উন্নত করে</li>
+                <li>💚 সাইড এফেক্ট নিয়ে নিশ্চিন্ত</li>
+                <li>💚 দীর্ঘমেয়াদে নিরাপদ</li>
+            </ul>
+            <h3>🌿"হাঁপানী রোগের দিন শেষ, সেবন করলে এ্যাজমারেক্স"</h3>
+            <p>শতভাগ প্রাকৃতিক ও পার্শপ্রতিক্রিয়ামুক্ত 🌿</p>
+            <p>🌿এ্যাজমারেক্স AZMAREX (হাব্বে সুআল)🌿</p>
+            <ul>
+                <li>🟢নতুন-পুরাতন হাঁপানী</li>
+                <li>🟢শ্বাসকষ্ট</li>
+                <li>🟢ব্রঙ্কাইটিস</li>
+                <li>🟢হাঁচি, নাক দিয়ে পানি আসা ইত্যাদিতে যাদুর ন্যায় দ্রুত কার্যকরী।</li>
+            </ul>
+            <p>👉 আজই অর্ডার করুন — ঘরে বসে ডেলিভারি 🚚</p>
+            <p>📦 ক্যাশ অন ডেলিভারি সুবিধা</p>
+            <p>🚛পাইকারি ও খুচরা সারাদেশে হোম ডেলিভারিতে ঔষধ দিয়ে থাকি৷</p>
+            <p>☎ 01602-078826   (WhatsApp)</p>
+        </div>
+        <!-- PRODUCT 2 -->
+        <div class="product">
+            <img src="image/bprex.jpg" alt="Bprex">
+            <h3>Bprex</h3>
+            <button class="order-btn" onclick="openOrder('Bprex', 500)">Order Now</button>
+        </div>
+        <!-- PRODUCT 3 -->
+        <div class="product">
+            <img src="image/gajorex.jpg" alt="Gajorex">
+            <h3>Gajorex</h3>
+            <button class="order-btn" onclick="openOrder('Gajorex', 600)">Order Now</button>
+        </div>
+        <!-- PRODUCT 4 -->
+        <div class="product">
+            <img src="image/igren.jpg" alt="Igren">
+            <h3>Igren</h3>
+            <button class="order-btn" onclick="openOrder('Igren', 700)">Order Now</button>
+        </div>
+        <!-- PRODUCT 5 -->
+        <div class="product">
+            <img src="image/kingraj.jpg" alt="Kingraj">
+            <h3>Kingraj</h3>
+            <button class="order-btn" onclick="openOrder('Kingraj', 800)">Order Now</button>
+        </div>
+        <!-- PRODUCT 6 -->
+        <div class="product">
+            <img src="image/naipain.jpg" alt="Naipain">
+            <h3>Naipain</h3>
+            <button class="order-btn" onclick="openOrder('Naipain', 900)">Order Now</button>
+        </div>
+        <!-- PRODUCT 7 -->
+        <div class="product">
+            <img src="image/peeless.jpg" alt="Peeless">
+            <h3>Peeless</h3>
+            <button class="order-btn" onclick="openOrder('Peeless', 1000)">Order Now</button>
+        </div>
+        <!-- PRODUCT 8 -->
+        <div class="product">
+            <img src="image/pic1.jpg" alt="Pic1">
+            <h3>Pic1</h3>
+            <button class="order-btn" onclick="openOrder('Pic1', 1100)">Order Now</button>
+        </div>
+        <!-- PRODUCT 9 -->
+        <div class="product">
+            <img src="image/pic2.jpg" alt="Pic2">
+            <h3>Pic2</h3>
+            <button class="order-btn" onclick="openOrder('Pic2', 1200)">Order Now</button>
+        </div>
+        <!-- PRODUCT 10 -->
+        <div class="product">
+            <img src="image/rexafet.jpg" alt="Rexafet">
+            <h3>Rexafet</h3>
+            <button class="order-btn" onclick="openOrder('Rexafet', 1300)">Order Now</button>
+        </div>
+        <!-- PRODUCT 11 -->
+        <div class="product">
+            <img src="image/spermton.jpg" alt="Spermton">
+            <h3>Spermton</h3>
+            <button class="order-btn" onclick="openOrder('Spermton', 1400)">Order Now</button>
+        </div>
+        <!-- PRODUCT 12 -->
+        <div class="product">
+            <img src="image/unifin.jpg" alt="Unifin">
+            <h3>Unifin</h3>
+            <button class="order-btn" onclick="openOrder('Unifin', 1500)">Order Now</button>
+        </div>
+    </div>
+</div>
+
+<!-- ORDER MODAL -->
+<div id="orderModal">
+    <div class="modal-content">
+        <h3>Place Your Order</h3>
+
+        <form id="orderForm">
+
+            <input type="text" id="customerName" name="customerName" placeholder="Your Name" required>
+            <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
+            <input type="text" id="address" name="address" placeholder="Full Address" required>
+
+            <input type="text" id="productName" name="productName" readonly>
+            <input type="number" id="price" name="price" readonly>
+
+            <input type="number" id="quantity" name="quantity" min="1" value="1" required>
+
+            <label>Select Payment Method:</label>
+            <select name="paymentMethod" id="paymentMethod" required>
+                <option value="">Choose</option>
+                <option value="bKash">bKash</option>
+                <option value="Nagad">Nagad</option>
+                <option value="Rocket">Rocket</option>
+            </select>
+
+            <div class="pay-icons">
+                <img src="https://seeklogo.com/images/B/bkash-logo-9813D1D1F6-seeklogo.com.png">
+                <img src="https://seeklogo.com/images/N/nagad-logo-1E8F0DBE80-seeklogo.com.png">
+                <img src="https://seeklogo.com/images/R/rocket-dutch-bangla-logo-8E3D20EBC4-seeklogo.com.png">
+            </div>
+
+            <p>Send payment to: <b>01778871115</b></p>
+
+            <input type="text" name="transactionId" placeholder="Enter Transaction ID" required>
+
+            <button class="submit-btn">Submit Order</button>
+        </form>
+    </div>
+</div>
+
+<script>
+const scriptURL = "https://script.google.com/macros/s/AKfycbzcWel2cbFmlV1GVLm8QvAmS7RiWCRcI8DOexHt19gsf7NPwE2lg9GxcBxbTBr-aAm5/exec";
+
+function openOrder(name, price) {
+    document.getElementById("productName").value = name;
+    document.getElementById("price").value = price;
+    document.getElementById("orderModal").style.display = "flex";
+}
+
+document.getElementById("orderForm").addEventListener("submit", e => {
+    e.preventDefault();
+
+    fetch(scriptURL, {
+        method: "POST",
+        body: new FormData(e.target)
+    })
+    .then(res => {
+        alert("Order Submitted Successfully!");
+        document.getElementById("orderModal").style.display = "none";
+        e.target.reset();
+    })
+    .catch(err => alert("Error: " + err.message));
+});
+</script>
+
+</body>
+</html>
