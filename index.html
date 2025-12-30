@@ -243,6 +243,14 @@
             .products img {
                 max-width: 80%;
             }
+
+            /* Update product grid to display in two columns on phone */
+            .product-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+                padding: 10px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -268,6 +276,15 @@
 
             .hero-content p {
                 font-size: 1rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .product-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 10px;
+                padding: 10px;
             }
         }
 
@@ -309,72 +326,10 @@
             vertical-align: middle;
             margin-right: 10px;
         }
-
-        /* Add responsive design for mobile layout */
-        .search-bar {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 10px;
-            background-color: #f1f1f1;
-        }
-
-        .search-bar input {
-            width: 80%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 10px;
-            padding: 10px;
-            margin-top: 10px; /* Ensure product grid is positioned below the search bar */
-        }
-
-        .product-item {
-            background-color: white;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            text-align: center;
-            padding: 10px;
-        }
-
-        .product-item img {
-            max-width: 100%;
-            border-radius: 5px;
-        }
-
-        .product-item .price {
-            color: #f97f79;
-            font-weight: bold;
-        }
-
-        .navigation {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            padding: 10px;
-            background-color: #364c63;
-            color: white;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-
-        .navigation div {
-            text-align: center;
-        }
-
-        .navigation div i {
-            font-size: 1.5rem;
-        }
     </style>
 </head>
 <body>
-    <header>LUMIRA MEDICA - Your Trusted Health Partner</header>
+    <header>LUMIRA MADICA - Your Trusted Health Partner</header>
 
     <section class="hero">
         <div class="hero-content">
@@ -386,55 +341,9 @@
         <img src="logo.jpg" alt="LUMIRA MADICA Logo">
     </section>
 
-    <div class="search-bar">
-        <input type="text" placeholder="Search for products">
-    </div>
-
-    <div class="product-grid">
-        <div class="product-item">
-            <img src="image/product1.jpg" alt="Product 1">
-            <p>Apple logo for mobile</p>
-            <p class="price">৳59</p>
-        </div>
-        <div class="product-item">
-            <img src="image/product2.jpg" alt="Product 2">
-            <p>CAT STN-28 Over Ear Music Headset</p>
-            <p class="price">৳499</p>
-        </div>
-        <div class="product-item">
-            <img src="image/product3.jpg" alt="Product 3">
-            <p>Humidifier Egg Lighting</p>
-            <p class="price">৳199</p>
-        </div>
-        <div class="product-item">
-            <img src="image/product4.jpg" alt="Product 4">
-            <p>Traveling School College Bag</p>
-            <p class="price">৳133</p>
-        </div>
-    </div>
-
-    <div class="navigation">
-        <div>
-            <i class="fas fa-home"></i>
-            <p>Home</p>
-        </div>
-        <div>
-            <i class="fas fa-th"></i>
-            <p>Categories</p>
-        </div>
-        <div>
-            <i class="fas fa-shopping-cart"></i>
-            <p>Cart</p>
-        </div>
-        <div>
-            <i class="fas fa-user"></i>
-            <p>Account</p>
-        </div>
-    </div>
-
     <section class="products" style="padding: 40px; text-align: center;">
         <h2>Available Products</h2>
-        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+        <div class="product-grid" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
             <div style="text-align: center;">
                 <img src="image/bprex.jpg" alt="Bprex" style="max-width: 200px; border-radius: 10px;">
                 <h3>Bprex</h3>
@@ -650,21 +559,6 @@
             button.addEventListener('click', () => {
                 const productName = button.previousElementSibling.previousElementSibling.textContent;
                 openOrderForm(productName);
-            });
-        });
-
-        // JavaScript to enable search functionality
-        document.querySelector('.search-bar input').addEventListener('input', function (event) {
-            const searchTerm = event.target.value.toLowerCase();
-            const products = document.querySelectorAll('.product-item');
-
-            products.forEach(product => {
-                const productName = product.querySelector('p').textContent.toLowerCase();
-                if (productName.includes(searchTerm)) {
-                    product.style.display = 'block';
-                } else {
-                    product.style.display = 'none';
-                }
             });
         });
     </script>
