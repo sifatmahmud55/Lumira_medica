@@ -211,26 +211,6 @@
             transform: scale(1.1);
         }
 
-        /* Ensure product grid displays in two columns */
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            padding: 10px;
-        }
-
-        @media (max-width: 768px) {
-            .product-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 480px) {
-            .product-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
         @media (max-width: 768px) {
             .hero {
                 flex-direction: column;
@@ -264,12 +244,51 @@
                 max-width: 80%;
             }
 
-            /* Update product grid to display in two columns on phone */
-            .product-grid {
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                gap: 10px;
-                padding: 10px;
+            /* Ensure Contact Us section fits on mobile screens */
+            .contact-us {
+                padding: 20px;
+                text-align: center;
+                background: #f1f1f1;
+                border-radius: 10px;
+                margin: 10px;
+            }
+
+            @media (max-width: 768px) {
+                .contact-us {
+                    padding: 15px;
+                    margin: 5px;
+                }
+
+                .contact-us h2 {
+                    font-size: 1.8rem;
+                }
+
+                .contact-us p {
+                    font-size: 1rem;
+                }
+
+                .contact-us a {
+                    font-size: 1.2rem;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .contact-us {
+                    padding: 10px;
+                    margin: 5px;
+                }
+
+                .contact-us h2 {
+                    font-size: 1.5rem;
+                }
+
+                .contact-us p {
+                    font-size: 0.9rem;
+                }
+
+                .contact-us a {
+                    font-size: 1rem;
+                }
             }
         }
 
@@ -296,15 +315,6 @@
 
             .hero-content p {
                 font-size: 1rem;
-            }
-        }
-
-        @media (min-width: 768px) {
-            .product-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-                gap: 10px;
-                padding: 10px;
             }
         }
 
@@ -363,7 +373,7 @@
 
     <section class="products" style="padding: 40px; text-align: center;">
         <h2>Available Products</h2>
-        <div class="product-grid" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
             <div style="text-align: center;">
                 <img src="image/bprex.jpg" alt="Bprex" style="max-width: 200px; border-radius: 10px;">
                 <h3>Bprex</h3>
@@ -407,7 +417,13 @@
                 <p style="color:rgb(249, 17, 17)" >Price: 150 TK</p>
                 <button class="cta">Order Now</button>
             </div>
-            
+            <div style="text-align: center;">
+                <img src="image/pic1.jpg" alt="Pic1" style="max-width: 200px; border-radius: 10px;">
+                <h3>Pic1</h3>
+                <p>Custom herbal product for personalized care.</p>
+                <p style="color:rgb(249, 17, 17)" >Price: 150 TK</p>
+                <button class="cta">Order Now</button>
+            </div>
             <div style="text-align: center;">
                 <img src="image/rexafet.jpg" alt="Rexafet" style="max-width: 200px; border-radius: 10px;">
                 <h3>Rexafet</h3>
@@ -535,18 +551,21 @@
     <script>
         const scriptURL = "https://script.google.com/macros/s/AKfycbzcWel2cbFmlV1GVLm8QvAmS7RiWCRcI8DOexHt19gsf7NPwE2lg9GxcBxbTBr-aAm5/exec";
 
-        function openOrderForm(productName) {
+        function openOrderForm(productName, productImage, productPrice) {
             const formHTML = `
                 <div id="orderModal" style="display: flex; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); justify-content: center; align-items: center; z-index: 999;">
                     <div style="background: white; width: 90%; max-width: 400px; padding: 20px; border-radius: 10px;">
                         <h3>Place Your Order</h3>
+                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                            <img src="${productImage}" alt="${productName}" style="max-width: 100px; border-radius: 10px;">
+                            <p style="font-size: 1.2rem; font-weight: bold; color: #007bff;"> ${productPrice}</p>
+                        </div>
                         <form id="orderForm">
                             <input type="text" name="customerName" placeholder="Your Name" required style="width: 100%; padding: 10px; margin: 8px 0; border-radius: 6px; border: 1px solid #ccc;">
                             <input type="tel" name="phone" placeholder="Phone Number" required style="width: 100%; padding: 10px; margin: 8px 0; border-radius: 6px; border: 1px solid #ccc;">
                             <input type="text" name="address" placeholder="Full Address" required style="width: 100%; padding: 10px; margin: 8px 0; border-radius: 6px; border: 1px solid #ccc;">
                             <input type="text" name="productName" value="${productName}" readonly style="width: 100%; padding: 10px; margin: 8px 0; border-radius: 6px; border: 1px solid #ccc;">
                             <input type="number" name="quantity" min="1" value="1" required style="width: 100%; padding: 10px; margin: 8px 0; border-radius: 6px; border: 1px solid #ccc;">
-                            
                             <button type="submit" style="background: #007bff; color: white; width: 100%; padding: 12px; border-radius: 6px; border: none; cursor: pointer; margin-top: 10px;">Submit Order</button>
                         </form>
                         <button onclick="closeOrderForm()" style="background: red; color: white; width: 100%; padding: 12px; border-radius: 6px; border: none; cursor: pointer; margin-top: 10px;">Cancel</button>
@@ -577,8 +596,10 @@
 
         document.querySelectorAll('.cta').forEach(button => {
             button.addEventListener('click', () => {
-                const productName = button.previousElementSibling.previousElementSibling.textContent;
-                openOrderForm(productName);
+                const productName = button.previousElementSibling.previousElementSibling.previousElementSibling.textContent;
+                const productImage = button.parentElement.querySelector('img').src;
+                const productPrice = button.previousElementSibling.textContent;
+                openOrderForm(productName, productImage, productPrice);
             });
         });
     </script>
