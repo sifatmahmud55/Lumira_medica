@@ -547,6 +547,7 @@
         &copy; 2025 MedEasy. All rights reserved. | <a href="#">Privacy Policy</a>
     </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
     <script>
         const scriptURL = "https://script.google.com/macros/s/AKfycbzcWel2cbFmlV1GVLm8QvAmS7RiWCRcI8DOexHt19gsf7NPwE2lg9GxcBxbTBr-aAm5/exec";
 
@@ -588,26 +589,93 @@
                 totalPriceElement.textContent = `Total Price: ${totalPrice} TK`;
             });
 
-            form.addEventListener("submit", e => {
+            form.addEventListener("submit", async e => {
                 e.preventDefault();
+
+                const submitButton = form.querySelector("button[type='submit']");
+                submitButton.disabled = true;
+                submitButton.textContent = "Submitting...";
+
                 const formData = new FormData(form);
-                const totalPrice = totalPriceElement.textContent.split(': ')[1].replace(' TK', ''); // Ensure only the numeric value is appended
+                const totalPrice = totalPriceElement.textContent.split(': ')[1].replace(' TK', '');
                 formData.append("totalPrice", totalPrice);
 
-                fetch(scriptURL, {
-                    method: "POST",
-                    body: formData
-                })
-                .then(res => {
-                    if (res.ok) {
+                try {
+                    const response = await fetch(scriptURL, {
+                        method: "POST",
+                        body: formData
+                    });
+
+                    if (response.ok) {
                         alert("Order Submitted Successfully!");
+                        generatePDFReceipt(formData);
                         closeOrderForm();
                     } else {
                         alert("Failed to submit order. Please try again.");
                     }
-                })
-                .catch(err => alert("Error: " + err.message));
+                } catch (err) {
+                    alert("Error: " + err.message);
+                } finally {
+                    submitButton.disabled = false;
+                    submitButton.textContent = "Submit Order";
+                }
             });
+
+            async function generatePDFReceipt(formData) {
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF();
+
+                // Add logo and company name
+                const logoUrl = "logo.jpg"; // Ensure the logo image is in the correct path
+                const currentDate = new Date().toLocaleDateString();
+
+                const logoWidth = 40; // Width of the logo in mm
+                const logoHeight = 20; // Height of the logo in mm
+                doc.addImage(logoUrl, "JPEG", 10, 10, logoWidth, logoHeight);
+
+                doc.setFontSize(18);
+                doc.text("Lumira Medica", 55, 25); // Company name beside the logo
+
+                // Add title and date
+                doc.setFontSize(18);
+                doc.text("Order Receipt", 60, 40);
+
+                doc.setFontSize(12);
+                doc.text(`Date: ${currentDate}`, 150, 20, { align: "right" });
+
+                // Add greeting message
+                doc.setFontSize(14);
+                doc.setTextColor(0, 102, 204); // Blue color for greeting
+                doc.text("Thank you for choosing Lumira Medica!", 10, 50);
+                doc.text("We appreciate your trust in our services.", 10, 58);
+
+                // Add customer and order details
+                doc.setFontSize(14);
+                doc.setTextColor(0, 0, 0); // Reset to black
+                doc.text("Customer Details:", 10, 70);
+
+                doc.setFontSize(12);
+                doc.text(`Name: ${formData.get("customerName")}`, 10, 80);
+                doc.text(`Phone: ${formData.get("phone")}`, 10, 90);
+                doc.text(`Address: ${formData.get("address")}`, 10, 100);
+
+                doc.setFontSize(14);
+                doc.text("Order Details:", 10, 120);
+
+                doc.setFontSize(12);
+                doc.text(`Product: ${formData.get("productName")}`, 10, 130);
+                doc.text(`Quantity: ${formData.get("quantity")}`, 10, 140);
+                doc.text(`Total Price: ${formData.get("totalPrice")} TK`, 10, 150);
+
+                // Add closing message
+                doc.setFontSize(14);
+                doc.setTextColor(0, 102, 204); // Blue color for closing message
+                doc.text("We look forward to serving you again!", 10, 170);
+                doc.text("Stay healthy and take care!", 10, 178);
+
+                // Save the PDF
+                doc.save("OrderReceipt.pdf");
+            }
         }
 
         function closeOrderForm() {
